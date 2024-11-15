@@ -5,8 +5,10 @@ import java.util.List;
 
 public class SportsTeam {
 
-    private String teamName;
-    private List<Player> teamMembers = new ArrayList<>();
+    private final String teamName;
+
+    private final List<Player> teamMembers = new ArrayList<>();
+
     private int totalWins = 0;
     private int totalLosses = 0;
     private int totalTies = 0;

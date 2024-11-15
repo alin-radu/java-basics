@@ -15,14 +15,17 @@ public class Main {
         var philly = new Affiliation("city", "Philadelphia, PA",
             "US");
 
+        // BaseballTeam
         BaseballTeam phillies1 = new BaseballTeam("Philadelphia Phillies");
         BaseballTeam astros1 = new BaseballTeam("Houston Astros");
         scoreResult(phillies1, 3, astros1, 5);
 
+        // SportsTeam
         SportsTeam phillies2 = new SportsTeam("Philadelphia Phillies");
         SportsTeam astros2 = new SportsTeam("Houston Astros");
         scoreResult(phillies2, 3, astros2, 5);
 
+        // Team
         Team<BaseballPlayer, Affiliation> phillies =
                 new Team<>("Philadelphia Phillies", philly);
         Team<BaseballPlayer, Affiliation> astros = new Team<>("Houston Astros");
@@ -32,6 +35,7 @@ public class Main {
         var marsh = new BaseballPlayer("B Marsh", "Right Fielder");
         phillies.addTeamMember(harper);
         phillies.addTeamMember(marsh);
+
         var guthrie = new BaseballPlayer("D Guthrie", "Center Fielder");
         phillies.addTeamMember(guthrie);
         phillies.listTeamMembers();

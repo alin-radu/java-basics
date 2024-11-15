@@ -13,11 +13,14 @@ record Affiliation(String name, String type, String countryCode) {
 
 public class Team<T extends Player, S> {
 
-    private String teamName;
-    private List<T> teamMembers = new ArrayList<>();
+    private final String teamName;
+
+    private final List<T> teamMembers = new ArrayList<>();
+
     private int totalWins = 0;
     private int totalLosses = 0;
     private int totalTies = 0;
+
     private S affiliation;
 
     public Team(String teamName) {
@@ -39,7 +42,7 @@ public class Team<T extends Player, S> {
     public void listTeamMembers() {
 
         System.out.print(teamName + " Roster:");
-        System.out.println((affiliation == null ? "" : " AFFILIATION: "+ affiliation));
+        System.out.println((affiliation == null ? "" : " AFFILIATION: " + affiliation));
         for (T t : teamMembers) {
             System.out.println(t.name());
         }
@@ -68,6 +71,6 @@ public class Team<T extends Player, S> {
 
     @Override
     public String toString() {
-        return teamName + " (Ranked "  + ranking() + ")";
+        return teamName + " (Ranked " + ranking() + ")";
     }
 }

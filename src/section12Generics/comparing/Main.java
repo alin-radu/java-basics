@@ -60,10 +60,10 @@ class StudentGPAComparator implements Comparator<Student> {
 class Student implements Comparable<Student> {
 
     private static int LAST_ID = 1000;
-    private static Random random = new Random();
+    private static final Random random = new Random();
 
     String name;
-    private int id;
+    private final int id;
     protected double gpa;
 
     public Student(String name) {
