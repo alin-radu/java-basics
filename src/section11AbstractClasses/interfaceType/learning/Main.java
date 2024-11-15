@@ -14,7 +14,7 @@ public class Main {
 
         animal.move();
 //        flier.move();
-//        tracked.move();
+//        tracked.move  ();
 
 //        flier.takeOff();
 //        flier.fly();
