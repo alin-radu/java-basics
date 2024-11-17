@@ -1,4 +1,4 @@
-package section14LambdaExpressions.learning;
+package section14LambdaExpressions.learningLambda;
 
 @FunctionalInterface
 public interface Operation<T> {
