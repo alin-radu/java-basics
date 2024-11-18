@@ -23,7 +23,7 @@ public class Main {
     public static void main(String[] args) {
 
         List<String> list = new ArrayList<>(List.of(
-                "Anna", "Bob", "Chuck", "Dave"));
+                "Anna", "Bob", "Chuck", "Dave", "Xavier"));
 
         list.forEach(System.out::println);
 
