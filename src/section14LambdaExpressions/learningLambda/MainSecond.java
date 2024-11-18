@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.function.BiConsumer;
 import java.util.function.BinaryOperator;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class MainSecond {
@@ -18,7 +19,11 @@ public class MainSecond {
             System.out.println(s);
         }
 
-        list.forEach((s) -> System.out.println(s));
+        Consumer<String> consumerString = (str)-> System.out.println("consumerString - " + str);
+
+        consumerString.accept("Hello");
+
+        list.forEach(consumerString);
 
         list.forEach((s) -> {
             String newS = s + "_" + s.charAt(0);

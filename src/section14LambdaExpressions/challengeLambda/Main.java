@@ -9,8 +9,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Consumer<String> printWords = new Consumer<String>() {
-
+        Consumer<String> printWordsAnonymous = new Consumer<String>() {
             @Override
             public void accept(String sentence) {
                 String[] parts = sentence.split(" ");
@@ -46,7 +45,7 @@ public class Main {
 //        System.out.println("---end---");
 
         // mini challenge 2
-        UnaryOperator<String> everySecondChar = source -> {
+        UnaryOperator<String> everySecondCharLambda = source -> {
             StringBuilder returnVal = new StringBuilder();
             for (int i = 0; i < source.length(); i++) {
                 if (i % 2 == 1) {
@@ -57,10 +56,10 @@ public class Main {
         };
 
         // mini challenge 3
-        System.out.println(everySecondChar.apply("1234567890"));
+        System.out.println(everySecondCharLambda.apply("1234567890"));
 
         // mini challenge 4
-        String result = everySecondCharacter(everySecondChar, "1234567890");
+        String result = everySecondCharacterMethod(everySecondCharLambda, "1234567890");
         System.out.println(result);
 
         // mini challenge 5
@@ -73,8 +72,7 @@ public class Main {
         System.out.println(iLoveJava2.get());
     }
 
-    public static String everySecondChar(String source) {
-
+    public static String everySecondCharMethod(String source) {
         StringBuilder returnVal = new StringBuilder();
         for (int i = 0; i < source.length(); i++) {
             if (i % 2 == 1) {
@@ -84,7 +82,7 @@ public class Main {
         return returnVal.toString();
     }
 
-    public static String everySecondCharacter(UnaryOperator<String> fn, String str) {
+    public static String everySecondCharacterMethod(UnaryOperator<String> fn, String str) {
         return fn.apply(str);
     }
 
