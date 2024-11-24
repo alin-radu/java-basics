@@ -1,72 +1,50 @@
 package section15JavaCollections.learning.treeSetBasics;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        List<Contact> emails =  ContactData.getData("email");
         List<Contact> phones = ContactData.getData("phone");
-        printData("Phone List", phones);
-        printData("Email List", emails);
+        List<Contact> emails = ContactData.getData("email");
 
-        Set<Contact> emailContacts = new HashSet<>(emails);
-        Set<Contact> phoneContacts = new HashSet<>(phones);
-        printData("Phone Contacts", phoneContacts);
-        printData("Email Contacts", emailContacts);
+//        NavigableSet<Contact> sorted = new TreeSet<>(phones);
+        Comparator<Contact> mySort = Comparator.comparing(Contact::getName);
+        NavigableSet<Contact> sorted = new TreeSet<>(mySort);
+        sorted.addAll(phones);
+        sorted.forEach(System.out::println);
 
-        int index = emails.indexOf(new Contact("Robin Hood"));
-        Contact robinHood = emails.get(index);
-        robinHood.addEmail("Sherwood Forest");
-        robinHood.addEmail("Sherwood Forest");
-        robinHood.replaceEmailIfExists("RHood@sherwoodforest.com",
-        "RHood@sherwoodforest.org");
-        System.out.println(robinHood);
+        NavigableSet<String> justNames = new TreeSet<>();
+        phones.forEach((c) -> justNames.add(c.getName()));
+        System.out.println(justNames);
 
-        Set<Contact> unionAB = new HashSet<>();
-        unionAB.addAll(emailContacts);
-        unionAB.addAll(phoneContacts);
-        printData("(A ∪ B) Union of emails (A) with phones (B)", unionAB);
+        NavigableSet<Contact> fullSet = new TreeSet<>(sorted);
+        fullSet.addAll(emails);
+        fullSet.forEach(System.out::println);
 
-        Set<Contact> intersectAB = new HashSet<>(emailContacts);
-        intersectAB.retainAll(phoneContacts);
-        printData("(A ∩ B) Intersect emails (A) and phones (B)",
-                intersectAB);
+        List<Contact> fullList = new ArrayList<>(phones);
+        fullList.addAll(emails);
+        fullList.sort(sorted.comparator());
+        System.out.println("--------------------------");
+        fullList.forEach(System.out::println);
 
-        Set<Contact> intersectBA = new HashSet<>(phoneContacts);
-        intersectBA.retainAll(emailContacts);
-        printData("(B ∩ A) Intersect phones (B) and emails (A)",
-                intersectBA);
+        Contact min = Collections.min(fullSet, fullSet.comparator());
+        Contact max = Collections.max(fullSet, fullSet.comparator());
 
-        Set<Contact> AMinusB = new HashSet<>(emailContacts);
-        AMinusB.removeAll(phoneContacts);
-        printData("(A - B) emails (A) - phones (B)",
-                AMinusB);
+        Contact first = fullSet.first();
+        Contact last = fullSet.last();
 
-        Set<Contact> BMinusA = new HashSet<>(phoneContacts);
-        BMinusA.removeAll(emailContacts);
-        printData("(B - A) phones (B) - emails (A)",
-                BMinusA);
+        System.out.println("--------------------------");
+        System.out.printf("min = %s, first=%s %n", min.getName(), first.getName());
+        System.out.printf("max = %s, last=%s %n", max.getName(), last.getName());
+        System.out.println("--------------------------");
 
-        Set<Contact> symmetricDiff = new HashSet<>(AMinusB);
-        symmetricDiff.addAll(BMinusA);
-        printData("Symmetric Difference: phones and emails", symmetricDiff);
+        NavigableSet<Contact> copiedSet = new TreeSet<>(fullSet);
+        System.out.println("First element = " + copiedSet.pollFirst());
+        System.out.println("Last element = " + copiedSet.pollLast());
+        copiedSet.forEach(System.out::println);
+        System.out.println("--------------------------");
 
-        Set<Contact> symmetricDiff2 = new HashSet<>(unionAB);
-        symmetricDiff2.removeAll(intersectAB);
-        printData("Symmetric Difference: phones and emails", symmetricDiff2);
-
-    }
-
-    public static void printData(String header, Collection<Contact> contacts) {
-
-        System.out.println("----------------------------------------------");
-        System.out.println(header);
-        System.out.println("----------------------------------------------");
-        contacts.forEach(System.out::println);
     }
 }
