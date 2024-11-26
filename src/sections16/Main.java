@@ -1,6 +1,7 @@
 package sections16;
 
 import sections16.consumer.ChildClass;
+import sections16.external.Logger;
 import sections16.generic.BaseClass;
 
 public class Main {
@@ -33,6 +34,12 @@ public class Main {
         doXYZ(xArgument, 16, zArgument);
         System.out.println("After Method, xArgument: " + xArgument);
         System.out.println("After Method, zArgument: " + zArgument);
+
+        StringBuilder tracker = new StringBuilder("Step 1 is abc");
+        Logger.logToConsole(tracker.toString());
+        tracker.append(", Step 2 is xyz.");
+        Logger.logToConsole(tracker.toString());
+        System.out.println("After logging, tracker = " + tracker);
 
     }
 
