@@ -1,7 +1,7 @@
-package sections16.immutableClasses.immutableClassesChallenge;
+package sections16.immutableClassesChallenge;
 
-import sections16.immutableClasses.immutableClassesChallenge.bank.BankAccount;
-import sections16.immutableClasses.immutableClassesChallenge.bank.BankCustomer;
+import sections16.immutableClassesChallenge.bank.BankAccount;
+import sections16.immutableClassesChallenge.bank.BankCustomer;
 
 import java.util.List;
 

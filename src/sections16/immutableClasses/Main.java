@@ -43,6 +43,5 @@ public class Main {
 
         john.setKids(kids);
         System.out.println(john);
-
     }
 }

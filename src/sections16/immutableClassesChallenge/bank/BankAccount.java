@@ -1,4 +1,4 @@
-package sections16.immutableClasses.immutableClassesChallenge.bank;
+package sections16.immutableClassesChallenge.bank;
 
 public class BankAccount {
     public enum AccountType {CHECKING, SAVINGS}
