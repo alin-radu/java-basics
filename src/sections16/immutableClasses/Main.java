@@ -28,20 +28,24 @@ public class Main {
 
         Person[] johnsKids = {jane, jim, joe};
         Person john = new Person("John", "05/05/1900", johnsKids);
+//        Person john = new Person("John", "05/05/1900", Arrays.copyOf(johnsKids, johnsKids.length));
 
-        System.out.println(john);
+        System.out.println("1 -> " + john);
 
-        john.setKids(new Person[]{new Person("Ann", "04/04/1930")});
-        System.out.println(john);
+//        john.setKids(new Person[]{new Person("Ann", "04/04/1930")});
+//        System.out.println("2 -> " + john);
 
-        Person[] kids = john.getKids();
-        kids[0] = jim;
-        System.out.println(john);
+        johnsKids[0] = new Person("HackKid", "04/04/1930");
+        System.out.println("3 -> " + john);
 
-        kids = null;
-        System.out.println(john);
-
-        john.setKids(kids);
-        System.out.println(john);
+//        Person[] kids = john.getKids();
+//        kids[0] = jim;
+//        System.out.println(john);
+//
+//        kids = null;
+//        System.out.println(john);
+//
+//        john.setKids(kids);
+//        System.out.println(john);
     }
 }
