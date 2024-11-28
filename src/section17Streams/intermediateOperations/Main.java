@@ -5,7 +5,7 @@ import java.util.Random;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-public class MainSeat {
+public class Main {
 
     public static void main(String[] args) {
 
@@ -42,7 +42,7 @@ public class MainSeat {
                                 .thenComparing(Seat::toString));
 //                        .mapToDouble(Seat::price)
 //                        .mapToObj("%.2f"::formatted)
-
+//
 //                        .mapToDouble(Seat::price)
 //                        .boxed()
 //                        .map("%.2f"::formatted);
