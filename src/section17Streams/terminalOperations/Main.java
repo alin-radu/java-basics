@@ -21,7 +21,7 @@ public class Main {
 
         Seat[] seats = new Seat[100];
         Arrays.setAll(seats, i -> new Seat((char) ('A' + i / 10), i % 10 + 1));
-//        Arrays.asList(seats).forEach(System.out::println);
+        Arrays.asList(seats).forEach(System.out::println);
 
 //        long reservationCount = Arrays
 //                .stream(seats)
