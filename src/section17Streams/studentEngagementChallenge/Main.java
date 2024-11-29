@@ -1,8 +1,10 @@
 package section17Streams.studentEngagementChallenge;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class Main {
 
@@ -34,10 +36,13 @@ public class Main {
         System.out.println("# of male students " + maleStudents.count());
 
         for (String gender : List.of("M", "F", "U")) {
-            var myStudents = Arrays.stream(students)
+            var myStudents = Arrays
+                    .stream(students)
                     .filter(s -> s.getGender().equals(gender));
             System.out.println("# of " + gender + " students " + myStudents.count());
         }
+
+        System.out.println("filter by age start");
 
         List<Predicate<Student>> list = List.of(
                 (s) -> s.getAge() < 30,
@@ -46,13 +51,18 @@ public class Main {
 
         long total = 0;
         for (int i = 0; i < list.size(); i++) {
-            var myStudents = Arrays.stream(students).filter(list.get(i));
-            long cnt = myStudents.count();
-            total += cnt;
+            var myStudentsCnt = Arrays
+                    .stream(students)
+                    .filter(list.get(i))
+                    .count();
+
+            total += myStudentsCnt;
             System.out.printf("# of students (%s) = %d%n",
-                    i == 0 ? " < 30" : ">= 30 & < 60", cnt);
+                    i == 0 ? " < 30" : ">= 30 & < 60", myStudentsCnt);
         }
         System.out.println("# of students >= 60 = " + (students.length - total));
+
+        System.out.println("filter by age end");
 
         var ageStream = Arrays.stream(students).
                 mapToInt(Student::getAgeEnrolled);
@@ -81,11 +91,22 @@ public class Main {
                 .count();
         System.out.println("longTerm students? " + longTermCount);
 
-        Arrays.stream(students)
+        var longTimeLearners = Arrays.stream(students)
                 .filter(s -> (s.getAge() - s.getAgeEnrolled() >= 7) &&
                         (s.getMonthsSinceActive() < 12))
                 .filter(s -> !s.hasProgrammingExperience())
                 .limit(5)
-                .forEach(System.out::println);
+//                .toList();
+//                .toArray(size -> new Student[size]);
+                .toArray(Student[]::new);
+
+        var learners = Arrays.stream(students)
+                .filter(s -> (s.getAge() - s.getAgeEnrolled() >= 7) &&
+                        (s.getMonthsSinceActive() < 12))
+                .filter(s -> !s.hasProgrammingExperience())
+                .limit(5)
+                .collect(Collectors.toList());
+
+        Collections.shuffle(learners);
     }
 }
