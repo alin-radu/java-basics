@@ -38,7 +38,7 @@ public class MainNIO2 {
                     }
                 }
             });
-            System.out.println(values);
+            System.out.println("1 " + values);
 
             try (var stringStream = Files.lines(path)) {
                 var results = stringStream
@@ -49,7 +49,7 @@ public class MainNIO2 {
                         .distinct()
                         .sorted()
                         .toArray(String[]::new);
-                System.out.println(Arrays.toString(results));
+                System.out.println("2 " + Arrays.toString(results));
             }
 
             try (var stringStream = Files.lines(path)) {
