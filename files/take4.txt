@@ -1,0 +1,11 @@
+Student Id,Country Code,Enrolled Year,Age,Gender,Experienced,Course Code,Engagement Month,Engagement Year,Engagement Type
+1           CN   2022  10 71MYJMC      6.67OCTOBER   2024Lecture 1                     
+1           CN   2022  10 71MYPYC     53.33JULY      2023Lecture 8                     
+2           US   2016   8 36MNJMC     46.67DECEMBER  2024Lecture 7                     
+2           US   2016   8 36MNPYC     73.33APRIL     2018Lecture 11                    
+3           AU   2022  10 86MNJMC      6.67MAY       2023Lecture 1                     
+3           AU   2022  10 86MNPYC     26.67AUGUST    2024Lecture 4                     
+4           IN   2018  11 18FNJMC     80.00FEBRUARY  2022Lecture 12                    
+4           IN   2018  11 18FNPYC     26.67OCTOBER   2024Lecture 4                     
+5           AU   2023   3 40MYJMC     33.33JUNE      2024Lecture 5                     
+5           AU   2023   3 40MYPYC     20.00MAY       2024Lecture 3                     
