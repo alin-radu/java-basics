@@ -15,11 +15,12 @@ public class MusicDML {
         ) {
             String tableName = "music.artists";
             String columnName = "artist_name";
-            String columnValue = "BobbyLo Dylan";
+            String columnValue = "Bobby L Dylan";
 
-            if (!executeSelect(statement, tableName, columnName, columnValue)) {
+            boolean existsData = executeSelect(statement, tableName, columnName, columnValue);
+
+            if (!existsData) {
                 System.out.println("Maybe we should add this record.");
-
                 insertRecord(statement, tableName, new String[]{columnName}, new String[]{columnValue});
             }
 
@@ -46,7 +47,6 @@ public class MusicDML {
             System.out.println();
 
             foundData = true;
-
         }
 
         return foundData;
@@ -55,10 +55,15 @@ public class MusicDML {
     private static boolean executeSelect(Statement statement, String table, String columnName, String columnValue) throws SQLException {
         String query = "SELECT * FROM %s WHERE %s='%s'".formatted(table, columnName, columnValue);
 
+        System.out.println("---> executeSelect: " + query);
+
         var resultSet = statement.executeQuery(query);
 
-        if (resultSet != null) {
+        if (resultSet.isBeforeFirst()) {
+            System.out.println("Item found | executeSelect");
             return printRecords(resultSet);
+        } else {
+            System.out.println("Item NOT found | executeSelect");
         }
 
         return false;
@@ -70,7 +75,7 @@ public class MusicDML {
         String colValues = String.join(",", columnValues);
         String query = "INSERT INTO %s (%s) VALUES('%s')".formatted(table, colNames, colValues);
 
-        System.out.println("executed query: " + query);
+        System.out.println("---> insertRecord: " + query);
 
         statement.execute(query);
         int recordsInserted = statement.getUpdateCount();
