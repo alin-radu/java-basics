@@ -21,7 +21,9 @@ public class Main {
             throw new RuntimeException(e);
         }
 
-        String query = "SELECT * FROM music.artists";
+        String query1 = "SELECT * FROM music.artists";
+        String albumName = "Tapestry";
+        String query2 = "SELECT * FROM music.albumview WHERE album_name='%s'".formatted(albumName);
 
         var dataSource = new MysqlDataSource();
         dataSource.setServerName(props.getProperty("serverName"));
@@ -36,16 +38,44 @@ public class Main {
         ) {
             System.out.println("Connected to the music DB ...");
 
-            ResultSet resultSet = statement.executeQuery(query);
-            var meta = resultSet.getMetaData();
+            // query1
+//            ResultSet resultSet1 = statement.executeQuery(query1);
+//            var meta = resultSet1.getMetaData();
+//            while (resultSet1.next()) {
+//                System.out.println("---");
+//                System.out.printf("%d %s %n", resultSet1.getInt(1), resultSet1.getString("artist_name"));
+//
+//            }
+//            System.out.println("---");
 
-            // solution1
-            while (resultSet.next()) {
-                System.out.println("---");
-                System.out.printf("%d %s %n", resultSet.getInt(1), resultSet.getString("artist_name"));
+            // query2
+            ResultSet resultSet2 = statement.executeQuery(query2);
+            var meta = resultSet2.getMetaData();
+            for (int i = 1; i <= meta.getColumnCount(); i++) {
+                System.out.printf("%d %s %s%n",
+                        i,
+                        meta.getColumnName(i),
+                        meta.getColumnTypeName(i)
+                );
+            }
+
+            System.out.println("================================");
+
+            for (int i = 1; i <= meta.getColumnCount(); i++) {
+                System.out.printf("%-15s%n", meta.getColumnName(i).toUpperCase());
+            }
+
+            System.out.println("================================");
+
+            while (resultSet2.next()) {
+                for (int i = 1; i <= meta.getColumnCount(); i++) {
+                    System.out.printf("%-15s", resultSet2.getString(i));
+                }
+                System.out.println();
 
             }
-            System.out.println("---");
+
+            // query3
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
