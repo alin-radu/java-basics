@@ -1,4 +1,4 @@
-package section22WorkingWithDatabases.mySQLmusic;
+package section22WorkingWithDatabases.jdbcBasics;
 
 import com.mysql.cj.jdbc.MysqlDataSource;
 
@@ -7,7 +7,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Arrays;
 
-public class Main {
+@SuppressWarnings("DuplicatedCode")
+public class MainDataSource {
     private final static String CONN_STRING = "jdbc:mysql://localhost:3306/music";
 
     public static void main(String[] args) {
@@ -25,23 +26,17 @@ public class Main {
         dataSource.setPort(3306);
         dataSource.setDatabaseName("music");
 
-        try (Connection connection = dataSource.getConnection(
-                username, String.valueOf(password)
-        )) {
+        try (
+                Connection connection = dataSource.getConnection(
+                        username, String.valueOf(password))
+        ) {
             System.out.println("Success!!! Connection made to the music DB.");
+            System.out.println("DB type: " + connection.getMetaData().getDatabaseProductName());
             Arrays.fill(password, ' ');
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
-//        try (Connection connection = DriverManager.getConnection(CONN_STRING, username, String.valueOf(password))) {
-//            System.out.println("Success!!! Connection made to the music DB.");
-//            Arrays.fill(password, ' ');
-//
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
 
     }
 }
