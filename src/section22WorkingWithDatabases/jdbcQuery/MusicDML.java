@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Arrays;
 import java.util.Properties;
 
 @SuppressWarnings("DuplicatedCode")
@@ -27,6 +28,12 @@ public class MusicDML {
         dataSource.setServerName(props.getProperty("serverName"));
         dataSource.setPort(Integer.parseInt(props.getProperty("port")));
         dataSource.setDatabaseName(props.getProperty("databaseName"));
+        try {
+            dataSource.setAllowMultiQueries(true);
+            dataSource.setContinueBatchOnError(false);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
         try (
                 Connection connection = dataSource.getConnection(
@@ -41,6 +48,7 @@ public class MusicDML {
 
             if (!existsData) {
                 insertArtistAlbum(statement, columnValue, columnValue);
+
 //                System.out.println("Maybe we should add this record.");
 //
 //                boolean addRecord = insertRecord(statement, tableName, new String[]{columnName}, new String[]{columnValue});
@@ -51,13 +59,22 @@ public class MusicDML {
 //                    System.out.println("Something went wrong!");
 //                }
             } else {
-                boolean deleteRecord = deleteRecord(statement, tableName, columnName, columnValue);
-
-                if (deleteRecord) {
-                    System.out.println("Record deleted from the DB.");
-                } else {
-                    System.out.println("Something went wrong!");
+                try {
+                    deleteArtistAlbum(connection, statement, columnValue, columnValue);
+                } catch (SQLException e) {
+                    e.printStackTrace();
                 }
+
+                executeSelect(statement, "music.albumview", "album_name", columnValue);
+                executeSelect(statement, "music.albums", "album_name", columnValue);
+
+//                boolean deleteRecord = deleteRecord(statement, tableName, columnName, columnValue);
+//
+//                if (deleteRecord) {
+//                    System.out.println("Record deleted from the DB.");
+//                } else {
+//                    System.out.println("Something went wrong!");
+//                }
             }
 
         } catch (SQLException e) {
@@ -188,5 +205,37 @@ public class MusicDML {
 
         executeSelect(statement, "music.albumview", "album_name",
                 albumName);
+    }
+
+    private static void deleteArtistAlbum(Connection conn, Statement statement, String artistName, String albumName) throws SQLException {
+        try {
+            System.out.println("AUTOCOMMIT = " + conn.getAutoCommit());
+            conn.setAutoCommit(false);
+
+            String deleteSongsQuery = """
+                    DELETE FROM music.songs WHERE album_id =
+                    (SELECT ALBUM_ID from music.albums WHERE album_name = '%s')"""
+                    .formatted(albumName);
+            String deleteAlbumsQuery = "DELETE FROM music.albums WHERE album_name='%s"
+                    .formatted(albumName);
+            String deleteArtistQuery = "DELETE FROM music.artists WHERE artist_name='%s'"
+                    .formatted(artistName);
+
+            statement.addBatch(deleteSongsQuery);
+            statement.addBatch(deleteAlbumsQuery);
+            statement.addBatch(deleteArtistQuery);
+
+            int[] results = statement.executeBatch();
+            System.out.println(Arrays.toString(results));
+
+            conn.commit();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            conn.rollback();
+        }
+        conn.setAutoCommit(true);
+        System.out.println("---> deleteArtistAlbum: Transaction completed.");
+
     }
 }
