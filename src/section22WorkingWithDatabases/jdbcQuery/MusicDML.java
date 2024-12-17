@@ -1,4 +1,4 @@
-package section22WorkingWithDatabases.queryMusic;
+package section22WorkingWithDatabases.jdbcQuery;
 
 import java.sql.*;
 
