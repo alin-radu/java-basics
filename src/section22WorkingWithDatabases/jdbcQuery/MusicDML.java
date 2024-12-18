@@ -172,10 +172,11 @@ public class MusicDML {
     private static void insertArtistAlbum(Statement statement, String artistName, String albumName) throws SQLException {
         String artistInsert = "INSERT INTO music.artists (artist_name) VALUES (%s)".formatted(statement.enquoteLiteral(artistName));
         System.out.println("---> insertRecord | add artist: " + artistInsert);
-        statement.execute(artistInsert, Statement.RETURN_GENERATED_KEYS);
 
+        statement.execute(artistInsert, Statement.RETURN_GENERATED_KEYS);
         ResultSet rs = statement.getGeneratedKeys();
         int artistId = (rs != null && rs.next()) ? rs.getInt(1) : -1;
+
         String albumInsert = "INSERT INTO music.albums (album_name, artist_id) VALUES (%s, %d)".formatted(statement.enquoteLiteral(albumName), artistId);
         System.out.println("---> insertRecord | add album:  " + albumInsert);
         statement.execute(albumInsert, Statement.RETURN_GENERATED_KEYS);

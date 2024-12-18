@@ -6,9 +6,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Properties;
@@ -22,7 +20,7 @@ public class MainStoreFront {
     public static void main(String[] args) {
         Properties props = new Properties();
         try {
-            props.load(Files.newInputStream(Path.of("music.properties"), StandardOpenOption.READ));
+            props.load(Files.newInputStream(Path.of("storefront.properties"), StandardOpenOption.READ));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -46,7 +44,7 @@ public class MainStoreFront {
 //            int newOrderId = addOrder(conn, new String[]{"shoes", "shirt", "socks"});
 //            System.out.println("---> newOrderId: " + newOrderId);
 
-            deleteOrder(conn, 1);
+            deleteOrder(conn, 5);
         } catch (SQLException e) {
             System.out.println("---> main | exception");
             throw new RuntimeException(e);
@@ -172,27 +170,49 @@ public class MainStoreFront {
         return orderId;
     }
 
+    private static int countOrderDetails(Statement statement, int orderId) throws SQLException {
+        String countQuery = "SELECT COUNT(*) FROM storefront.order_details WHERE order_id =%d".formatted(orderId);
+
+        try (ResultSet resultSet = statement.executeQuery(countQuery)) {
+            if (resultSet.next()) {
+                return resultSet.getInt(1);
+            }
+        }
+
+        return 0;
+    }
+
     private static void deleteOrder(Connection conn, int orderId) throws SQLException {
 
         String deleteOrderQuery = "DELETE FROM %s where order_id=%d";
         String parentQuery = deleteOrderQuery.formatted("storefront.order", orderId);
-        String childQuery = deleteOrderQuery.formatted("storefront.order_details",
-                orderId);
+        String childQuery = deleteOrderQuery.formatted("storefront.order_details", orderId);
 
         try (Statement statement = conn.createStatement()) {
             conn.setAutoCommit(false);
 
-            int deletedRecords = statement.executeUpdate(childQuery);
-            System.out.printf("%d child records deleted%n", deletedRecords);
-            deletedRecords = statement.executeUpdate(parentQuery);
+            int orderDetailsCount = countOrderDetails(statement, orderId);
 
-            if (deletedRecords == 1) {
-                conn.commit();
-                System.out.printf("Order %d was successfully deleted%n", orderId);
+            System.out.println("---> orderDetailsCountQuery: " + orderDetailsCount);
+
+            int deletedOrderDetailsRecords = statement.executeUpdate(childQuery);
+
+            if (deletedOrderDetailsRecords == orderDetailsCount) {
+                int deletedOrderRecords = statement.executeUpdate(parentQuery);
+                System.out.printf("%d child records deleted%n", deletedOrderDetailsRecords);
+
+                if (deletedOrderRecords == 1) {
+                    conn.commit();
+                    System.out.printf("Order %d was successfully deleted%n", orderId);
+                } else {
+                    System.out.println("Something went wrong with deleting the order no. " + orderId);
+                    conn.rollback();
+                }
             } else {
                 System.out.println("Something went wrong with deleting the order no. " + orderId);
                 conn.rollback();
             }
+
         } catch (SQLException e) {
             conn.rollback();
             throw new RuntimeException(e);
