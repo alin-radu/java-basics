@@ -28,12 +28,13 @@ public class MusicDML {
         dataSource.setServerName(props.getProperty("serverName"));
         dataSource.setPort(Integer.parseInt(props.getProperty("port")));
         dataSource.setDatabaseName(props.getProperty("databaseName"));
-        try {
-            dataSource.setAllowMultiQueries(true);
-            dataSource.setContinueBatchOnError(false);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+
+//        try {
+//            dataSource.setAllowMultiQueries(true);
+//            dataSource.setContinueBatchOnError(false);
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
 
         try (
                 Connection connection = dataSource.getConnection(
@@ -68,13 +69,13 @@ public class MusicDML {
                 executeSelect(statement, "music.albumview", "album_name", columnValue);
                 executeSelect(statement, "music.albums", "album_name", columnValue);
 
-//                boolean deleteRecord = deleteRecord(statement, tableName, columnName, columnValue);
-//
-//                if (deleteRecord) {
-//                    System.out.println("Record deleted from the DB.");
-//                } else {
-//                    System.out.println("Something went wrong!");
-//                }
+                boolean deleteRecord = deleteRecord(statement, tableName, columnName, columnValue);
+
+                if (deleteRecord) {
+                    System.out.println("Record deleted from the DB.");
+                } else {
+                    System.out.println("Something went wrong!");
+                }
             }
 
         } catch (SQLException e) {
@@ -217,7 +218,7 @@ public class MusicDML {
                     DELETE FROM music.songs WHERE album_id =
                     (SELECT ALBUM_ID from music.albums WHERE album_name = '%s')"""
                     .formatted(albumName);
-            String deleteAlbumsQuery = "DELETE FROM music.albums WHERE album_name='%s"
+            String deleteAlbumsQuery = "DELETE FROM music.albums WHERE album_name='%s'"
                     .formatted(albumName);
             String deleteArtistQuery = "DELETE FROM music.artists WHERE artist_name='%s'"
                     .formatted(artistName);
@@ -230,7 +231,6 @@ public class MusicDML {
             System.out.println(Arrays.toString(results));
 
             conn.commit();
-
         } catch (SQLException e) {
             e.printStackTrace();
             conn.rollback();

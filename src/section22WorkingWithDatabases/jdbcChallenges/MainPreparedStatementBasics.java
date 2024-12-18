@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Properties;
 
 @SuppressWarnings("DuplicatedCode")
-public class MainPreparedStatement {
+public class MainPreparedStatementBasics {
     private static final String MUSIC_PROPERTIES = "music.properties";
 
     private static final String ARTIST_INSERT = "INSERT INTO music.artists (artist_name) VALUES (?)";
