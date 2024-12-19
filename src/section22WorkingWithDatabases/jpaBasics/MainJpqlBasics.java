@@ -4,6 +4,9 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.Tuple;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
 import section22WorkingWithDatabases.jpaBasics.music.Artist;
 
 import java.util.List;
@@ -67,5 +70,25 @@ public class MainJpqlBasics {
         query.setParameter(2, "%Best of%");
 
         return query.getResultList();
+    }
+
+    private static Stream<Artist> getArtistsBuilder(EntityManager em, String matchedValue) {
+        CriteriaBuilder builder = em.getCriteriaBuilder();
+        CriteriaQuery<Artist> criteriaQuery = builder.createQuery(Artist.class);
+        Root<Artist> root = criteriaQuery.from(Artist.class);
+
+        criteriaQuery
+                .select(root)
+                .where(builder.like(root.get("artistName"), matchedValue))
+                .orderBy(builder.asc(root.get("artistName")));
+
+        return em.createQuery(criteriaQuery).getResultStream();
+    }
+
+    private static Stream<Artist> getArtistsSQL(EntityManager em, String matchedValue) {
+        var query = em.createNativeQuery("SELECT * FROM music.artists where artist_name like ?1", Artist.class);
+        query.setParameter(1, matchedValue);
+
+        return query.getResultStream();
     }
 }
