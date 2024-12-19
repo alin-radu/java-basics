@@ -3,6 +3,7 @@ package section22WorkingWithDatabases.jpaBasics;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import section22WorkingWithDatabases.jpaBasics.music.Artist;
 
 public class MainJpaBasics {
     public static void main(String[] args) {
@@ -32,6 +33,18 @@ public class MainJpaBasics {
             // update item from the db, v2
 //            Artist artist = new Artist(202, "Muddy Water");
 //            entityManager.merge(artist);
+
+            // remove duplicates albums
+//            Artist artist = entityManager.find(Artist.class, 202);
+//            System.out.println("---> artist_old: " + artist);
+//            artist.removeDuplicates();
+//            System.out.println("---> artist_new: " + artist);
+
+            // add new album
+            Artist artist = entityManager.find(Artist.class, 202);
+            System.out.println("---> artist_old: " + artist);
+            artist.addAlbum("The Best of Muddy Waters");
+            System.out.println("---> artist_new: " + artist);
 
             transaction.commit();
         } catch (Exception e) {
