@@ -51,28 +51,49 @@ public class MainCallableStatement {
 
         try (
                 Connection connection = dataSource.getConnection();
-                CallableStatement cs = connection.prepareCall("CALL music.addAlbum(?,?,?)");
+//                CallableStatement cs = connection.prepareCall("CALL music.addAlbumInOutCounts(?,?,?,?)");
 
         ) {
-            albums.forEach((artist, albumMap) -> {
-                albumMap.forEach((album, songs) -> {
-                    try {
-                        cs.setString(1, artist);
-                        cs.setString(2, album);
-                        cs.setString(3, songs);
-                        cs.execute();
-
-                    } catch (SQLException e) {
-                        System.err.println(e.getErrorCode() + " " + e.getMessage());
-                    }
-                });
-            });
+//            albums.forEach((artist, albumMap) -> {
+//                albumMap.forEach((album, songs) -> {
+//                    try {
+//                        cs.setString(1, artist);
+//                        cs.setString(2, album);
+//                        cs.setString(3, songs);
+//                        cs.setInt(4, 10);
+//                        cs.registerOutParameter(4, Types.INTEGER);
+//                        cs.execute();
+//
+//                        System.out.printf("---> addAlbumReturnCounts | result of the %d songs were added for %s%n", cs.getInt(4), album);
+//
+//                    } catch (SQLException e) {
+//                        System.err.println(e.getErrorCode() + " " + e.getMessage());
+//                    }
+//                });
+//            });
 
             String sql = "SELECT * FROM music.albumview WHERE artist_name = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, "Bob Dylan");
             ResultSet resultSet = ps.executeQuery();
             printRecords(resultSet);
+
+            CallableStatement csf = connection.prepareCall(
+                    "{ ? = CALL music.calcAlbumLength(?) }");
+            csf.registerOutParameter(1, Types.DOUBLE);
+
+            albums.forEach((artist, albumMap) -> {
+                albumMap.keySet().forEach((albumName) -> {
+                    try {
+                        csf.setString(2, albumName);
+                        csf.execute();
+                        double result = csf.getDouble(1);
+                        System.out.printf("Length of %s is %.1f%n", albumName, result);
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
+            });
 
         } catch (SQLException e) {
             e.printStackTrace();
