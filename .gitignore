@@ -31,3 +31,6 @@ bin/
 ###
 music.properties
 storefront.properties
+
+###
+persistence.xml
