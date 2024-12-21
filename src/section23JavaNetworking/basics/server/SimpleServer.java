@@ -20,16 +20,18 @@ public class SimpleServer {
 
                 String echoString;
                 while (true) {
+                    System.out.println("before readLine");
                     echoString = input.readLine();
+                    System.out.println("after redLine");
 
                     System.out.println("Server got request data: " + echoString);
 
                     if (echoString.equals("exit")) {
-                        System.out.println("Connection will terminate");
+                        System.out.println("Connection was terminated.");
                         break;
+                    } else {
+                        output.println("Echo from server: " + echoString);
                     }
-
-                    output.println("Echo from server: " + echoString);
                 }
             }
 

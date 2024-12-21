@@ -24,15 +24,17 @@ public class SimpleClient {
                 requestString = scanner.nextLine();
 
                 output.println(requestString);
+
                 if (!requestString.equals("exit")) {
                     responseString = input.readLine();
                     System.out.println(responseString);
                 }
             } while (!requestString.equals("exit"));
+
         } catch (IOException e) {
             System.out.println("Client Error: " + e.getMessage());
         } finally {
-            System.out.println("Client Disconnected");
+            System.out.println("Client Disconnected.");
         }
     }
 }
