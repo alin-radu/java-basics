@@ -4,7 +4,7 @@ import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.util.function.Consumer;
 
-public class Main {
+public class MainByteBuffer {
 
     public static void main(String[] args) {
 
