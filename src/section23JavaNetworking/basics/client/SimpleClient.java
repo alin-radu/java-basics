@@ -26,9 +26,7 @@ public class SimpleClient {
                 output.println(requestString); // sends the request string to the server
 
                 if (!requestString.equals("exit")) {
-                    System.out.println("before input.readLine()");
                     responseString = input.readLine(); // will block were waiting for a new line, get server response
-                    System.out.println("after input.readLine()");
 
                     System.out.println(responseString);
                 }

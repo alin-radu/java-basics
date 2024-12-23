@@ -11,7 +11,7 @@ import java.util.concurrent.Executors;
 
 @SuppressWarnings({"DuplicatedCode"})
 
-public class MultiThreadedSimpleServer {
+public class SimpleServerMultiThreaded {
     private static int connection_id = 0;
     private static volatile boolean keepRunning = true;
 
