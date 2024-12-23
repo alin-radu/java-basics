@@ -23,10 +23,13 @@ public class SimpleClient {
                 System.out.println("Enter string to be echoed (sent to server): ");
                 requestString = scanner.nextLine();
 
-                output.println(requestString);
+                output.println(requestString); // sends the request string to the server
 
                 if (!requestString.equals("exit")) {
-                    responseString = input.readLine();
+                    System.out.println("before input.readLine()");
+                    responseString = input.readLine(); // will block were waiting for a new line, get server response
+                    System.out.println("after input.readLine()");
+
                     System.out.println(responseString);
                 }
             } while (!requestString.equals("exit"));

@@ -13,28 +13,32 @@ import java.util.concurrent.Executors;
 
 public class MultiThreadedSimpleServer {
     private static int connection_id = 0;
+    private static volatile boolean keepRunning = true;
 
     public static void main(String[] args) {
 
         ExecutorService executorService = Executors.newCachedThreadPool();
 
-        System.out.println("before try");
-
         try (ServerSocket serverSocket = new ServerSocket(5001)) {
+            System.out.println("Server started, waiting for connection from the client...");
 
-            while (true) {
-
+            while (keepRunning) {
                 Socket socket = serverSocket.accept();
+                socket.setSoTimeout(900_0000);
                 connection_id++;
+                System.out.println("Server_id_" + connection_id + " connected with the client.");
 
-                System.out.println("Server_id " + connection_id + " accepts client connection");
-                socket.setSoTimeout(90_0000);
-
-                executorService.submit(() -> handleClientRequest(socket));
+                executorService.execute(() -> handleClientRequest(socket));
             }
         } catch (IOException e) {
             System.out.println("Server exception " + e.getMessage());
+        } finally {
+            keepRunning = false;
+            executorService.shutdown();
+            System.out.println("Server shut down gracefully.");
         }
+
+        keepRunning = true;
     }
 
     private static void handleClientRequest(Socket socket) {
@@ -45,18 +49,16 @@ public class MultiThreadedSimpleServer {
         ) {
             String echoString;
             while (true) {
-                System.out.println("before readLine");
+                System.out.println("Server_id_" + connection_id + " Waiting for a request...");
                 echoString = input.readLine();
-                System.out.println("after redLine");
-
-                System.out.println("Server got request data: " + echoString);
+                System.out.println("Server_id_" + connection_id + " Received a request, the request is: " + echoString);
 
                 if (echoString.equals("exit")) {
                     System.out.println("Connection was terminated.");
                     break;
-                } else {
-                    output.println("Echo from server: " + echoString);
                 }
+
+                output.println("Echo from server: " + echoString);
             }
         } catch (Exception e) {
             System.out.println("Client socket shut down here");
