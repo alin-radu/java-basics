@@ -1,4 +1,4 @@
-package section23JavaNetworking.URIBasics;
+package section23JavaNetworking.basics.httpClient;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
