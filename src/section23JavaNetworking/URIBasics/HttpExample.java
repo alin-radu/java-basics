@@ -34,7 +34,6 @@ public class HttpExample {
             System.out.println("--------------------");
             printContents(connection.getInputStream());
             System.out.println("--------------------");
-
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

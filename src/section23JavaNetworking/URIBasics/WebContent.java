@@ -16,7 +16,8 @@ public class WebContent {
 
             URL url = new URL("https://jsonplaceholder.typicode.com/todos?id=5");
 
-            printContents(url.openStream());
+//             executes openConnection().getInputStream;
+//            printContents(url.openStream());
 
             URLConnection urlConnection = url.openConnection();
 
@@ -44,7 +45,6 @@ public class WebContent {
     }
 
     private static void printContents(InputStream is) {
-
         try (BufferedReader inputStream = new BufferedReader(new InputStreamReader(is))) {
             String line;
             while ((line = inputStream.readLine()) != null) {
