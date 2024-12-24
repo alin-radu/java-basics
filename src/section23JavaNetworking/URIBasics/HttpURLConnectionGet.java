@@ -9,15 +9,18 @@ import java.net.URL;
 
 import static java.net.HttpURLConnection.HTTP_OK;
 
-public class HttpExample {
+public class HttpURLConnectionGet {
 
     public static void main(String[] args) {
 
         try {
-            URL url = new URL("http://example.com");
+//            URL url = new URL("http://example.com");
+            URL url = new URL("http://localhost:8080");
+
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
             connection.setRequestMethod("GET");
+
             connection.setRequestProperty("User-Agent", "Chrome");
             connection.setRequestProperty("Accept", "application/json, text/html");
             connection.setReadTimeout(30000);
