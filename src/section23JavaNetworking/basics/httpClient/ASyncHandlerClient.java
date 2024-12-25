@@ -1,4 +1,4 @@
-package dev.lpa;
+package section23JavaNetworking.basics.httpClient;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
