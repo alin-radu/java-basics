@@ -109,9 +109,3 @@ public class GitHubLanguageAnalyzer {
         }
     }
 }
-
-//Generate a Personal Access Token (PAT):
-//
-//Go to GitHub and navigate to Settings > Developer Settings > Personal Access Tokens.
-//Click on Generate new token, give it a name, and select the necessary scopes for your use case (for example, the repo scope if you need access to repositories).
-//Click Generate token and save it somewhere safe.
