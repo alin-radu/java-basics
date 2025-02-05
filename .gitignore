@@ -22,6 +22,10 @@ bin/
 /nbdist/
 /.nb-gradle/
 
+### Specific to this repository ###
+./musicDB
+./testDB
+
 ### VS Code ###
 .vscode/
 
