@@ -16,7 +16,7 @@ import java.util.Map;
 
 public class GitHubLanguageAnalyzer {
     private static final String FILE_PATH = "repos.json"; // JSON file containing repositories
-    private static final String GITHUB_TOKEN = "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";
+    private static final String GITHUB_TOKEN = "dummy";
 
     public static void main(String[] args) {
         try {
