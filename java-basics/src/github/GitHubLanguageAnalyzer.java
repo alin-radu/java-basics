@@ -16,7 +16,6 @@ import java.util.Map;
 
 public class GitHubLanguageAnalyzer {
     private static final String FILE_PATH = "repos.json"; // JSON file containing repositories
-    private static final String DUMMY = "dummy";
 
     public static void main(String[] args) {
         try {
@@ -94,7 +93,7 @@ public class GitHubLanguageAnalyzer {
             connection.setRequestMethod("GET");
 
             // Set Authorization header with the Personal Access Token
-            String authHeaderValue = "Bearer " + DUMMY;
+            String authHeaderValue = "Bearer " + GITHUB_TOKEN;
             connection.setRequestProperty("Authorization", authHeaderValue);
 
             // Read the response
