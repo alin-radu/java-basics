@@ -6,13 +6,11 @@ import java.util.Scanner;
 public class SortedInputArray {
     private static Scanner scanner = new Scanner(System.in);
 
-    private static int[] getIntegers(int number) {
-        int[] values = new int[number];
-        int valuesLength = number;
+    private static int[] getIntegers() {
+        int[] values = new int[5];
 
-
-        System.out.println("Enter " + number + " integers: \r");
-        for (int i = 0; i < valuesLength; i++) {
+        System.out.println("Enter " + 5 + " integers: \r");
+        for (int i = 0; i < 5; i++) {
             values[i] = scanner.nextInt();
         }
         scanner.close();
@@ -21,17 +19,13 @@ public class SortedInputArray {
     }
 
     private static int[] sortIntegers(int[] array) {
-        int sortedLength = array.length;
-        int[] sortedArray = new int[sortedLength];
-        for (int i = 0; i < sortedLength; i++) {
-            sortedArray[i] = array[i];
-        }
+        int[] sortedArray = Arrays.copyOf(array, array.length);
 
         boolean flag = true;
         int temp;
         while (flag) {
             flag = false;
-            for (int i = 0; i < sortedLength - 1; i++) {
+            for (int i = 0; i < array.length - 1; i++) {
                 if (sortedArray[i] < sortedArray[i + 1]) {
                     temp = sortedArray[i];
                     sortedArray[i] = sortedArray[i + 1];
@@ -50,7 +44,7 @@ public class SortedInputArray {
     }
 
     public static void main(String[] args) {
-        int[] myIntegers = getIntegers(5);
+        int[] myIntegers = getIntegers();
         printValues("Your input numbers: ", myIntegers);
 
         int[] mySortedArray = sortIntegers(myIntegers);

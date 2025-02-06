@@ -29,10 +29,13 @@ public class Main {
         int[] newArray;
 //        newArray = new int[] {5, 4, 3, 2, 1};
         newArray = new int[5];
+
         for (int i = 0; i < newArray.length; i++) {
             newArray[i] = newArray.length - i;
         }
+
         System.out.println(Arrays.toString(newArray));
+
         for (int element : newArray) {
             System.out.print(element + " ");
         }
@@ -47,6 +50,9 @@ public class Main {
 
         int[] firstArray = getRandomArray(10);
         System.out.println(Arrays.toString(firstArray));
+
+        System.out.println("sorted arrays");
+        System.out.println(Arrays.toString(Arrays.stream(firstArray).sorted().toArray()));
         Arrays.sort(firstArray);
         System.out.println(Arrays.toString(firstArray));
 
@@ -55,7 +61,7 @@ public class Main {
         Arrays.fill(secondArray, 5);
         System.out.println(Arrays.toString(secondArray));
 
-        int[] thirdArray = getRandomArray(10);
+        int[] thirdArray = getRandomArray(15);
         System.out.println(Arrays.toString(thirdArray));
 
         int[] fourthArray = Arrays.copyOf(thirdArray, thirdArray.length);
@@ -78,8 +84,17 @@ public class Main {
             System.out.println("Found Mark in the list");
         }
 
+        String[] namesArray = {"a", "b", "c"};
+        Arrays.sort(namesArray);
+
+        if (Arrays.binarySearch(namesArray, "ccc") >= 0) {
+            System.out.println("test ---> ");
+        } else {
+            System.out.println("test failed ---> ");
+        }
+
         int[] s1 = {1, 2, 3, 4, 5};
-        int[] s2 = {1, 2, 3, 4, 5, 0};
+        int[] s2 = {5, 2, 3, 4, 1};
 
         if (Arrays.equals(s1, s2)) {
             System.out.println("Arrays are equal");
@@ -88,11 +103,11 @@ public class Main {
         }
     }
 
-    private static int[] getRandomArray(int len) {
+    private static int[] getRandomArray(int customLength) {
 
         Random random = new Random();
-        int[] newInt = new int[len];
-        for (int i = 0; i < len; i++) {
+        int[] newInt = new int[customLength];
+        for (int i = 0; i < customLength; i++) {
             newInt[i] = random.nextInt(100);
         }
 

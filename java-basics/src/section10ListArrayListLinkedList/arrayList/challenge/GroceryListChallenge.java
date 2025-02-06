@@ -14,6 +14,14 @@ public class GroceryListChallenge {
         printInstructions();
         while (!quitFlag) {
             System.out.println("Enter your choice: ");
+
+            while (!scanner.hasNextInt()) {
+                System.out.println("Invalid input. Please enter a valid number:");
+                scanner.nextLine();
+            }
+
+//            This method reads the next integer value entered by the user.
+//            However, when the user enters a number, the input is followed by the newline character (\n) that the user hits after pressing "Enter."
             choice = scanner.nextInt();
             scanner.nextLine();
 
@@ -130,10 +138,6 @@ class GroceryList {
 
     public boolean onFile(String searchItem) {
         int position = findItem(searchItem);
-        if (position >= 0) {
-            return true;
-        }
-
-        return false;
+        return position >= 0;
     }
 }

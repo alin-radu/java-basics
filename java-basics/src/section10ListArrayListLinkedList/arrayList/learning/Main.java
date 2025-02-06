@@ -9,29 +9,38 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // test
-
+        // 1
         GroceryItem[] groceryArray = new GroceryItem[3];
         groceryArray[0] = new GroceryItem("milk");
         groceryArray[1] = new GroceryItem("apples", "PRODUCE", 6);
         groceryArray[2] = new GroceryItem("oranges", "PRODUCE", 5);
-        System.out.println(Arrays.toString(groceryArray));
+        System.out.println("groceryArray: " + Arrays.toString(groceryArray));
 
-        ArrayList objectList = new ArrayList();
-        objectList.add(new GroceryItem("Butter"));
-        objectList.add("Yogurt");
+        GroceryItem[] groceryItems2 = {new GroceryItem("milk")};
+        System.out.println("groceryArray2: " + Arrays.toString(groceryItems2));
 
+        // raw use of a type
+        ArrayList groceryArrayList = new ArrayList();
+        groceryArrayList.add(new GroceryItem("Butter"));
+        groceryArrayList.add("Yogurt");
+
+        // arrayList methods
         ArrayList<GroceryItem> groceryList = new ArrayList<>();
         groceryList.add(new GroceryItem("Butter"));
-        groceryList.add(new GroceryItem("milk"));
-        groceryList.add(new GroceryItem("oranges", "PRODUCE", 5));
-        groceryList.set(0,
-                new GroceryItem("apples", "PRODUCE", 6));
+        groceryList.add(new GroceryItem("Milk"));
+        groceryList.add(new GroceryItem("Oranges", "PRODUCE", 5));
+        groceryList.set(0, new GroceryItem("Apples", "PRODUCE", 6));
         groceryList.remove(1);
-        System.out.println(groceryList);
+        System.out.println("groceryList: " + groceryList);
+
+        // creating an ArrayList using an immutable collection
+        String[] items = {"apples", "bananas"};
+        List<String> itemsList = List.of(items);
+        ArrayList<String> itemsArrayList = new ArrayList<>(itemsList);
+        itemsArrayList.add("cherry");
+        System.out.println("itemsArrayList: " + itemsArrayList);
 
         // Arrays vs ArrayList
-
         String[] originalArray = new String[]{"First", "Second", "Third"};
         var originalList = Arrays.asList(originalArray);
 
@@ -41,8 +50,6 @@ public class Main {
 
         originalList.sort(Comparator.naturalOrder());
         System.out.println("array: " + Arrays.toString(originalArray));
-
-//        originalList.add("fourth");
 
         List<String> newList = Arrays.asList("Sunday", "Monday", "Tuesday");
         System.out.println(newList);

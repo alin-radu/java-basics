@@ -3,7 +3,7 @@ package section9Array.challenge;
 import java.util.Scanner;
 
 public class MinimumElementArray {
-    private static Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
 
@@ -28,10 +28,8 @@ public class MinimumElementArray {
     private static int findMin(int[] array) {
         int min = array[0];
         for (int i = 1; i < array.length; i++) {
-            int value = array[i];
-
-            if (min > value) {
-                min = value;
+            if (min > array[i]) {
+                min = array[i];
             }
         }
         return min;
