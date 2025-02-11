@@ -39,10 +39,10 @@ public class BaseballTeam {
         String message = "lost to";
         if (ourScore > theirScore) {
             totalWins++;
-            message = "beat";
+            message = "beat with";
         } else if (ourScore == theirScore) {
             totalTies++;
-            message = "tied";
+            message = "tied with";
         } else {
             totalLosses++;
         }

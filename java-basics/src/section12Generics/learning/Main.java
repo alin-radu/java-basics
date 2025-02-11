@@ -33,10 +33,9 @@ public class Main {
 
         var harper = new BaseballPlayer("B Harper", "Right Fielder");
         var marsh = new BaseballPlayer("B Marsh", "Right Fielder");
+        var guthrie = new BaseballPlayer("D Guthrie", "Center Fielder");
         phillies.addTeamMember(harper);
         phillies.addTeamMember(marsh);
-
-        var guthrie = new BaseballPlayer("D Guthrie", "Center Fielder");
         phillies.addTeamMember(guthrie);
         phillies.listTeamMembers();
 
