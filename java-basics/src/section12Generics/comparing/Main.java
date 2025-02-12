@@ -8,6 +8,7 @@ public class Main {
 
     public static void main(String[] args) {
 
+        // example 1
         Integer five = 5;
         Integer[] others = {0, 5, 10, -50, 50};
 
@@ -33,6 +34,7 @@ public class Main {
         System.out.println("B:"+(int)'B' + " " + "b:"+(int)'b');
         System.out.println("P:"+(int)'P' + " " + "p:"+(int)'p');
 
+        // example 2
         Student tim = new Student ("Tim");
         Student [] students = {new Student("Zach"), new Student("Tim"),
                 new Student("Ann")};
@@ -79,7 +81,7 @@ class Student implements Comparable<Student> {
 
     @Override
     public int compareTo(Student o) {
-        return Integer.valueOf(id).compareTo(Integer.valueOf(o.id));
+        return Integer.compare(id, o.id);
     }
 
 //    @Override

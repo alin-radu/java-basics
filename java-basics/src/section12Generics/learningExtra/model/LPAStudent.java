@@ -2,7 +2,7 @@ package section12Generics.learningExtra.model;
 
 public class LPAStudent extends Student {
 
-    private double percentComplete;
+    private final double percentComplete;
 
     public LPAStudent() {
         percentComplete = random.nextDouble(0, 100.001);
