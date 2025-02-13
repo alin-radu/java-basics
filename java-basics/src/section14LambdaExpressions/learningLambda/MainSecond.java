@@ -15,15 +15,23 @@ public class MainSecond {
 
         List<String> list = new ArrayList<>(List.of("alpha", "bravo", "charlie", "delta"));
 
+        // v1
         for (String s : list) {
-            System.out.println(s);
+            System.out.println("v1: " + s);
         }
 
-        Consumer<String> consumerString = (str)-> System.out.println("consumerString - " + str);
+        // v2
+        list.forEach(s -> System.out.println("v2: " + s));
+
+        System.out.println(("----------------------------------------------------"));
+
+        Consumer<String> consumerString = (str) -> System.out.println("consumerString - " + str);
 
         consumerString.accept("Hello");
 
         list.forEach(consumerString);
+
+        System.out.println(("----------------------------------------------------"));
 
         list.forEach((s) -> {
             String newS = s + "_" + s.charAt(0);

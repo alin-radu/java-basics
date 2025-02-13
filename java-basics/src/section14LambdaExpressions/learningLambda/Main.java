@@ -24,6 +24,7 @@ public class Main {
                 new Person("Peppermint", "Patty"),
                 new Person("Charlie", "Brown")));
 
+        // v1
         // Using anonymous class
         var comparatorLastName = new Comparator<Person>() {
 
@@ -33,10 +34,14 @@ public class Main {
             }
         };
 
-        Comparator<Person> comparatorLastNameSecond = (Person o1, Person o2)->o1.lastName().compareTo(o2.lastName());
+        System.out.println("sort v1" + people);
 
-//        people.sort(comparatorLastName);
-        people.sort((o1, o2) -> o1.lastName().compareTo(o2.lastName()));
+        // v2
+        Comparator<Person> comparatorLastNameSecond = (Person o1, Person o2) -> o1.lastName().compareTo(o2.lastName());
+        people.sort(comparatorLastNameSecond);
+
+        // v3
+        people.sort(Comparator.comparing(Person::lastName));
         System.out.println("sort" + people);
 
         interface EnhancedComparator<T> extends Comparator<T> {
