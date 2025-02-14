@@ -4,10 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-import java.util.function.BiConsumer;
-import java.util.function.BinaryOperator;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
+import java.util.function.*;
 
 public class MainSecond {
 
@@ -57,28 +54,33 @@ public class MainSecond {
         var firstPoint = coords.get(0);
         processPoint(firstPoint[0], firstPoint[1], p1);
 
-        System.out.println("-------");
+        System.out.println(("----------------------------------------------------"));
         coords.forEach(s -> processPoint(s[0], s[1], p1));
         coords.forEach(s -> processPoint(s[0], s[1],
                 (lat, lng) ->
                         System.out.printf("[lat:%.3f lon:%.3f]%n", lat, lng)));
 
+        // predicate type of functional interface
         list.removeIf(s -> s.equalsIgnoreCase("bravo"));
         list.forEach(s -> System.out.println(s));
 
         list.addAll(List.of("echo", "easy", "earnest"));
         list.forEach(s -> System.out.println(s));
 
-        System.out.println("-------");
+        System.out.println(("----------------------------------------------------"));
         list.removeIf(s -> s.startsWith("ea"));
         list.forEach(s -> System.out.println(s));
 
+        // function type of functional interface
+        // 1
         list.replaceAll(s -> s.charAt(0) + " - " + s.toUpperCase());
-        System.out.println("-------");
-        list.forEach(s -> System.out.println(s));
+        System.out.println(("----------------------------------------------------"));
+        list.forEach(System.out::println);
 
+        // 2
         String[] emptyStrings = new String[10];
         System.out.println(Arrays.toString(emptyStrings));
+
         Arrays.fill(emptyStrings, "");
         System.out.println(Arrays.toString(emptyStrings));
 
@@ -95,11 +97,13 @@ public class MainSecond {
         );
         System.out.println(Arrays.toString(emptyStrings));
 
+        // supplier type of functional interface
+        // 1
+
         String[] names = {"Ann", "Bob", "Carol", "David", "Ed", "Fred"};
         String[] randomList = randomlySelectedValues(15, names,
                 () -> new Random().nextInt(0, names.length));
         System.out.println(Arrays.toString(randomList));
-
     }
 
 //    public static <T> T calculator(Operation<T> function, T value1, T value2) {
