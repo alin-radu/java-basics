@@ -29,6 +29,7 @@ public class Main {
                 .forEach(d -> System.out.printf("%c ", d));
 
         System.out.println();
+
         int maxSeats = 100;
         int seatsInRow = 10;
         var stream =
