@@ -1,4 +1,7 @@
-package section17Streams.studentEngagementChallenge;
+package section17Streams.optionalBasics;
+
+import section17Streams.studentEngagementChallenge.Course;
+import section17Streams.studentEngagementChallenge.Student;
 
 import java.util.Comparator;
 import java.util.List;

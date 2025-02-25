@@ -1,4 +1,7 @@
-package section17Streams.studentEngagementChallenge;
+package section17Streams.optionalBasics;
+
+import section17Streams.studentEngagementChallenge.Course;
+import section17Streams.studentEngagementChallenge.Student;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +10,7 @@ import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class MainOptional {
+public class Main {
 
     public static void main(String[] args) {
 
