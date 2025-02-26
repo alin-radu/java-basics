@@ -41,6 +41,5 @@ public class Main {
 
         cards = List.copyOf(kingsOfClubs);
         Card.printDeck(cards, "List Copy of Kings", 1);
-
     }
 }

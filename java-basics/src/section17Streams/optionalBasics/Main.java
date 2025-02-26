@@ -68,7 +68,7 @@ public class Main {
 
     private static Optional<Student> getStudent(List<Student> list, String type) {
 
-        if (list == null || list.size() == 0) {
+        if (list == null || list.isEmpty()) {
             return Optional.empty();
         } else if (type.equals("first")) {
 //            return Optional.of(list.get(0));
