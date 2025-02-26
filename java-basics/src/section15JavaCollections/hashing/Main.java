@@ -29,10 +29,8 @@ public class Main {
                 System.out.print(", setValue: " + setValue);
                 System.out.println(", hellos[i]: " + hellos.get(i));
                 if (setValue == hellos.get(i)) {
-                    System.out.println("--- setValue: " + setValue + " is equal with hellos value: " + hellos.get(i));
+                    System.out.println(">>> setValue == hellos.get(i): " + i + ", ");
                     count++;
-                } else{
-                    System.out.println("xxx setValue: " + setValue + " is NOT equal with hellos value: " + hellos.get(i));
                 }
 
             }
