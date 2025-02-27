@@ -61,7 +61,6 @@ public record Card(Suit suit, String face, int rank) {
 
     public static void printDeck(List<Card> deck, String description, int rows) {
 
-        System.out.println("---------------------------");
         if (description != null) {
             System.out.println(description);
         }
