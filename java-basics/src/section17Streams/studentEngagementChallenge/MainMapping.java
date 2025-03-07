@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.*;
-import static java.util.stream.Collectors.groupingBy;
+//import static java.util.stream.Collectors.groupingBy;
 
 public class MainMapping {
 
@@ -20,12 +20,19 @@ public class MainMapping {
                 .mapToObj(s -> Student.getRandomStudent(jmc, pymc))
                 .toList();
 
-        var mappedStudents = students.stream()
-                .collect(Collectors.groupingBy(Student::getCountryCode));
-
-        mappedStudents.forEach((k, v) -> System.out.println(k + " " + v.size()));
+        System.out.println(students.size());
 
         System.out.println("-----------------------");
+        // Collectors.groupingBy,
+
+        var mappedStudents = students.stream()
+                .collect(Collectors.groupingBy(Student::getCountryCode));
+        mappedStudents.forEach((k, v) -> System.out.println(k + " " + v.size()));
+
+        //
+        System.out.println("-----------------------");
+        // Collectors.groupingBy, Collectors.filtering,
+
         int minAge = 25;
         var youngerSet = students.stream()
                 .collect(groupingBy(Student::getCountryCode,
@@ -41,6 +48,9 @@ public class MainMapping {
                 .collect(partitioningBy(Student::hasProgrammingExperience, counting()));
         System.out.println("Experienced Students = " + expCount.get(true));
 
+        //
+        System.out.println("-----------------------");
+
         var experiencedAndActive = students.stream()
                 .collect(partitioningBy(
                         s -> s.hasProgrammingExperience()
@@ -48,6 +58,9 @@ public class MainMapping {
                         counting()));
         System.out.println("Experienced and Active Students = " +
                 experiencedAndActive.get(true));
+
+        //
+        System.out.println("-----------------------");
 
         var multiLevel = students.stream()
                 .collect(groupingBy(Student::getCountryCode,

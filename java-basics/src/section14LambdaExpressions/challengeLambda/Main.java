@@ -28,11 +28,11 @@ public class Main {
 
         Consumer<String> printWordsForEach = (sentence) -> {
             String[] parts = sentence.split(" ");
-            Arrays.asList(parts).forEach(s -> System.out.println(s));
+            Arrays.asList(parts).forEach(System.out::println);
         };
 
         Consumer<String> printWordsConcise = (sentence) ->
-                Arrays.asList(sentence.split(" ")).forEach(s -> System.out.println(s));
+                Arrays.asList(sentence.split(" ")).forEach(System.out::println);
 
 //        System.out.println("---1---");
 //        printWords.accept("Let's split this up into an array");
