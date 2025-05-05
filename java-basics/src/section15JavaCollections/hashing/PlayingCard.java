@@ -2,9 +2,9 @@ package section15JavaCollections.hashing;
 
 public class PlayingCard {
 
-    private String suit;
-    private String face;
-    private int internalHash;
+    private final String suit;
+    private final String face;
+    private final int internalHash;
 
     public PlayingCard(String suit, String face) {
         this.suit = suit;

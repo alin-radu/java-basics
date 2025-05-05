@@ -3,7 +3,10 @@ package section16.consumer;
 import section16.generic.BaseClass;
 
 public class ChildClass extends BaseClass {
-
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
     @Override
     protected void optionalMethod() {
 
@@ -28,4 +31,5 @@ public class ChildClass extends BaseClass {
         optionalStatic();
 //        mandatoryStatic();
     }
+
 }

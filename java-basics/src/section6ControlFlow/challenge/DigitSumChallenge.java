@@ -1,4 +1,4 @@
-package challenge;
+package section6ControlFlow.challenge;
 
 public class DigitSumChallenge {
     public static void main(String[] args) {
