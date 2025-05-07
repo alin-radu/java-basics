@@ -18,8 +18,8 @@ public class Main {
 
         Set<String> mySet = new HashSet<>(hellos);
 
-        System.out.println("mySet = " + mySet);
-        System.out.println("# of elements = " + mySet.size());
+        System.out.println("mySet= " + mySet);
+        System.out.println("# of elements= " + mySet.size());
 
         for (String setValue : mySet) {
             int count = 0;
@@ -31,7 +31,7 @@ public class Main {
                 if (setValue == hellos.get(i)) {
                     System.out.println("--- setValue: " + setValue + " is equal with hellos value: " + hellos.get(i));
                     count++;
-                } else{
+                } else {
                     System.out.println("xxx setValue: " + setValue + " is NOT equal with hellos value: " + hellos.get(i));
                 }
 
@@ -62,7 +62,7 @@ public class Main {
         }
         System.out.println("completed to add cards to the deck Set");
         System.out.println();
-        System.out.println("Set content: "+ deck);
+        System.out.println("Set content: " + deck);
 
     }
 }
