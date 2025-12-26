@@ -1,4 +1,4 @@
-package learning;
+package section6ControlFlow.learning;
 
 import java.util.Scanner;
 

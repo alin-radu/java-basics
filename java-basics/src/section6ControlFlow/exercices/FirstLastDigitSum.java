@@ -1,4 +1,4 @@
-package exercices;
+package section6ControlFlow.exercices;
 
 public class FirstLastDigitSum {
     public static void main(String[] args) {

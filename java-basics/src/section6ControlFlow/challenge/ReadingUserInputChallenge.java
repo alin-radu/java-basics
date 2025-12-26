@@ -1,4 +1,4 @@
-package challenge;
+package section6ControlFlow.challenge;
 
 import java.util.Scanner;
 
