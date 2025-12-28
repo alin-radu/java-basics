@@ -1,4 +1,4 @@
-package section7OOP.learning;
+package section7OOP.learning.inheritance;
 
 public class Fish extends Animal {
 
@@ -11,6 +11,19 @@ public class Fish extends Animal {
         this.fins = fins;
     }
 
+    public int getGills() {
+        return gills;
+    }
+    public void setGills(int gills) {
+        this.gills = gills;
+    }
+
+    public int getFins() {
+        return fins;
+    }
+    public void setFins(int fins) {
+        this.fins = fins;
+    }
     private void moveMuscles() {
         System.out.print("muscles moving ");
     }
@@ -31,9 +44,6 @@ public class Fish extends Animal {
 
     @Override
     public String toString() {
-        return "Fish{" +
-                "gills=" + gills +
-                ", fins=" + fins +
-                "} " + super.toString();
+        return "Fish{" + "gills=" + gills + ", fins=" + fins + "} " + super.toString();
     }
 }

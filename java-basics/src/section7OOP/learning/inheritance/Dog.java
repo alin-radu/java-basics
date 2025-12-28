@@ -1,4 +1,4 @@
-package section7OOP.learning;
+package section7OOP.learning.inheritance;
 
 public class Dog extends Animal {
 
