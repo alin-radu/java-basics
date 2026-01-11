@@ -34,6 +34,8 @@ public class Main {
             }
         };
 
+        people.sort(comparatorLastName);
+
         System.out.println("sort v1" + people);
 
         // v2

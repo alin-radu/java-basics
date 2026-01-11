@@ -21,9 +21,9 @@ public class Fish extends Animal {
     public void makeNoise() {
 
         if (type == "Goldfish") {
-            System.out.print("swish ");
+            System.out.print(getExplicitType() + " swish ");
         } else {
-            System.out.print("splash ");
+            System.out.print(getExplicitType() + " splash ");
         }
 
     }

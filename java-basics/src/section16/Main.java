@@ -12,6 +12,7 @@ public class Main {
         ChildClass child = new ChildClass();
         BaseClass childReferredToAsBase = new ChildClass();
 
+        System.out.println("--------------------");
         parent.recommendedMethod();
         System.out.println("--------------------");
         childReferredToAsBase.recommendedMethod();

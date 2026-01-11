@@ -17,6 +17,8 @@ public class MainSecond {
             System.out.println("v1: " + s);
         }
 
+        System.out.println(("----------------------------------------------------"));
+
         // v2
         list.forEach(s -> System.out.println("v2: " + s));
 
@@ -60,7 +62,7 @@ public class MainSecond {
                 (lat, lng) ->
                         System.out.printf("[lat:%.3f lon:%.3f]%n", lat, lng)));
 
-        // predicate type of functional interface
+        // Predicate type of functional interface
         list.removeIf(s -> s.equalsIgnoreCase("bravo"));
         list.forEach(s -> System.out.println(s));
 
@@ -71,7 +73,7 @@ public class MainSecond {
         list.removeIf(s -> s.startsWith("ea"));
         list.forEach(s -> System.out.println(s));
 
-        // function type of functional interface
+        // Function type of functional interface
         // 1
         list.replaceAll(s -> s.charAt(0) + " - " + s.toUpperCase());
         System.out.println(("----------------------------------------------------"));
@@ -97,7 +99,7 @@ public class MainSecond {
         );
         System.out.println(Arrays.toString(emptyStrings));
 
-        // supplier type of functional interface
+        // Supplier type of functional interface
         // 1
 
         String[] names = {"Ann", "Bob", "Carol", "David", "Ed", "Fred"};

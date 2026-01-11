@@ -40,9 +40,8 @@ public class Main {
     }
 
     public static DayOfTheWeek getRandomDay() {
-
-        int randomInteger = new Random().nextInt(7);
-        var allDays = DayOfTheWeek.values();
+        int randomInteger = new Random().nextInt(DayOfTheWeek.values().length);
+        DayOfTheWeek[] allDays = DayOfTheWeek.values();
 
         return allDays[randomInteger];
     }

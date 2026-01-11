@@ -64,6 +64,7 @@ public class Main {
         int[] thirdArray = getRandomArray(15);
         System.out.println(Arrays.toString(thirdArray));
 
+        // copy an array
         int[] fourthArray = Arrays.copyOf(thirdArray, thirdArray.length);
         System.out.println(Arrays.toString(fourthArray));
 

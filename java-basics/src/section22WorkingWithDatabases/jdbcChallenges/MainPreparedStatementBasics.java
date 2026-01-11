@@ -40,7 +40,7 @@ public class MainPreparedStatementBasics {
         ) {
             addDataFromFile(connection);
 
-            String sql = "SELECT * FROM music.albumview where artist_name = ?";
+            String sql = "SELECT * FROM music.albumview WHERE artist_name = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, "Bob Dylan");
             ResultSet resultSet = ps.executeQuery();

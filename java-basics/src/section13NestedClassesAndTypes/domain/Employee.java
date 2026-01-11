@@ -7,7 +7,7 @@ public class Employee {
     public static class EmployeeComparator <T extends Employee>
             implements Comparator<Employee> {
 
-        private String sortType;
+        private final String sortType;
 
         public EmployeeComparator() {
             this("name");

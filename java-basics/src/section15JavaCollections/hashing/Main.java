@@ -34,6 +34,7 @@ public class Main {
                 } else {
                     System.out.println("xxx setValue: " + setValue + " is NOT equal with hellos value: " + hellos.get(i));
                 }
+                System.out.println();
 
             }
             System.out.println("--- " + setValue + " , count: " + count + " --- end ------");

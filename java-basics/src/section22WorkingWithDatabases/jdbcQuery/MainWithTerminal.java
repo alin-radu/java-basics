@@ -38,7 +38,7 @@ public class MainWithTerminal {
         try (
                 var connection = dataSource.getConnection(
                         props.getProperty("user"), System.getenv("MYSQL_PASS"));
-                Statement statement = connection.createStatement();
+                Statement statement = connection.createStatement()
         ) {
             System.out.println("Successfully connected to the music DB ...");
 
