@@ -22,12 +22,15 @@ bin/
 /nbdist/
 /.nb-gradle/
 
-### Specific to this repository ###
-musicDB/
-testDB/
-
 ### VS Code ###
 .vscode/
 
 ### Mac OS ###
 .DS_Store
+
+###
+music.properties
+storefront.properties
+
+###
+persistence.xml
